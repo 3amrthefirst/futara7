@@ -14,7 +14,12 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | contains the "web" middleware group. Now create something great!
 |
 */
- Route::get('/','Front\MainController@index' )->name('home');
+
+Route::get('test', function () {
+    return 'test';
+});
+
+Route::get('/', 'Front\MainController@index')->name('home');
 
 //Route::get('pdf/{id}' , [\App\Http\Controllers\Api\BillController::class , 'pdfBill']);
 
@@ -22,4 +27,4 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::get('/qrcode/{id}/{type}/{coId}', [\App\Http\Controllers\Api\BillController::class, 'QrIndex']);
-Route::get('/bill/{id}/{type}/{coId}' , [\App\Http\Controllers\Api\BillController::class , 'singleBillWeb']);
+Route::get('/bill/{id}/{type}/{coId}', [\App\Http\Controllers\Api\BillController::class, 'singleBillWeb']);
