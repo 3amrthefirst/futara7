@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\GetAttribute;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,6 +12,8 @@ class Company extends Authenticatable
 {
     use GetAttribute , HasApiTokens , SoftDeletes;
     protected $table = "companies";
+    protected $appends = ['days'] ;
+
     public $timestamps = true ;
     protected $fillable = [
         'name',
@@ -38,6 +41,22 @@ class Company extends Authenticatable
     {
         return $this->hasMany(Category::class , 'company_id');
     }
+
+    public function getDaysAttribute()
+    {
+
+        $start = Carbon::parse($this->subscription_end_date);
+        $now =  now();
+        $end = Carbon::parse($now);
+        $days = $end->diffInDays($start);
+        if($start < $end)
+        {
+            return 0 ;
+        }else{
+            return $days ;
+        }
+    }
+
     public function product()
     {
         return $this->hasManyThrough(

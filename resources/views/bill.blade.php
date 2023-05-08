@@ -14,7 +14,7 @@
 
 
     <p> <img src="{{$data->company_logo}}"> </p>
-  <h3> الرقم </h3> <p> {{$data->id}} </p>
+    <h3> الرقم </h3> <p> {{$data->id}} </p>
     <h3> الرقم الضريبي </h3><p> {{$data->tax_number}} </p>
     <h3> الاسم </h3><p> {{$data->name}} </p>
     <h3> السعر </h3><p> {{$data->price}} </p>
